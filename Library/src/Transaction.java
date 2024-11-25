@@ -4,7 +4,7 @@ import java.util.Date;
 public class Transaction {
 
     // Perform the borrowing of a book
-    public static boolean borrowBook(Book book, Member member) {
+    public boolean borrowBook(Book book, Member member) {
         if (book.isAvailable()) {
             book.borrowBook();
             member.borrowBook(book); 
@@ -18,7 +18,7 @@ public class Transaction {
     }
 
     // Perform the returning of a book
-    public static void returnBook(Book book, Member member) {
+    public void returnBook(Book book, Member member) {
         if (member.getBorrowedBooks().contains(book)) {
             member.returnBook(book);
             book.returnBook();
@@ -30,8 +30,27 @@ public class Transaction {
     }
 
     // Get the current date and time in a readable format
-    private static String getCurrentDateTime() {
+    private String getCurrentDateTime() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         return sdf.format(new Date());
     }
+    
+    //private constructor
+    private Transaction()
+    {
+    	
+    }
+    //private instance variable
+    private static Transaction instance;
+    
+    //public accessor method
+    public static Transaction getTransaction()
+    {
+    	if (instance == null)
+    	{
+    		instance = new Transaction();
+    	}
+    	return instance;
+    }
+	
 }
