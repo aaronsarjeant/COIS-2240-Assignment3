@@ -2,7 +2,6 @@ public class Book {
     private int id;
     private String title;
     private boolean available;
-//updated
     public Book(int id, String title) {
         this.id = id;
         this.title = title;

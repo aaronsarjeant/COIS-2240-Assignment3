@@ -81,7 +81,10 @@ public class Transaction {
     	System.out.println(line);
     	}
     	reader.close();
-    	} catch (Exception e) {}
+    	} catch (Exception e) 
+    	{
+    		System.out.println("Exception: empty or nonexistent file.");
+    	}
     }
 
 }
