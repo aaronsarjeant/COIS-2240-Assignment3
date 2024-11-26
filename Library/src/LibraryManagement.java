@@ -53,9 +53,11 @@ public class LibraryManagement {
                     String title = scanner.next();
                     
                     scanner.nextLine();
-
-                    Book newBook = new Book(id, title);
-                    if (library.addBook(newBook) == true)
+                    
+					
+			
+				try {
+					if (library.addBook(new Book(id, title)) == true)
                     {
                     System.out.println("Book added successfully.");
                     }
@@ -63,6 +65,9 @@ public class LibraryManagement {
                     {
                     	System.out.println("Book not added, Duplicate ID");
                     }
+				} catch (Exception e) {
+					System.out.println("Invalid ID");
+				}
                     break;
                 case 3:
                 	System.out.println("\n--- Available Members ---");
