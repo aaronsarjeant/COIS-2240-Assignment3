@@ -1,4 +1,6 @@
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -60,9 +62,26 @@ public class Transaction {
     	try
     	{
       BufferedWriter writer = new BufferedWriter(new FileWriter("transactions.txt", true));
-    writer.write("\n" + transactionDetails);
+    writer.write(transactionDetails + "\n");
+    
       writer.close(); 
     	} catch (Exception e) {}
     	
+
     }
+    public void displayTransactionHistory()
+    {
+    	try
+    	{
+    	BufferedReader reader = new BufferedReader(new FileReader("transactions.txt"));
+    	
+    String line;
+    	while ((line = reader.readLine()) != null)
+    	{
+    	System.out.println(line);
+    	}
+    	reader.close();
+    	} catch (Exception e) {}
+    }
+
 }
