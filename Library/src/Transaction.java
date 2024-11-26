@@ -1,3 +1,5 @@
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -9,7 +11,7 @@ public class Transaction {
             book.borrowBook();
             member.borrowBook(book); 
             String transactionDetails = getCurrentDateTime() + " - Borrowing: " + member.getName() + " borrowed " + book.getTitle();
-            System.out.println(transactionDetails);
+            saveTransaction(transactionDetails);
             return true;
         } else {
             System.out.println("The book is not available.");
@@ -23,7 +25,7 @@ public class Transaction {
             member.returnBook(book);
             book.returnBook();
             String transactionDetails = getCurrentDateTime() + " - Returning: " + member.getName() + " returned " + book.getTitle();
-            System.out.println(transactionDetails);
+            saveTransaction(transactionDetails);
         } else {
             System.out.println("This book was not borrowed by the member.");
         }
@@ -53,4 +55,14 @@ public class Transaction {
     	return instance;
     }
 	
+    private void saveTransaction(String transactionDetails)
+    {
+    	try
+    	{
+      BufferedWriter writer = new BufferedWriter(new FileWriter("transactions.txt", true));
+    writer.write("\n" + transactionDetails);
+      writer.close(); 
+    	} catch (Exception e) {}
+    	
+    }
 }
