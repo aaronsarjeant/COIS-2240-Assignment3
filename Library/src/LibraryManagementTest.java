@@ -1,5 +1,7 @@
 import static org.junit.Assert.*;
 
+import java.lang.reflect.Constructor;
+
 import org.junit.Test;
 
 public class LibraryManagementTest {
@@ -27,6 +29,14 @@ public void testBorrowReturn() throws Exception
 	assertFalse(t.returnBook(book1, member1));
 	
 	
+}
+
+@Test
+public void testSingletonTransaction() throws Exception
+{
+	Constructor<Transaction> constructor = Transaction.class.getDeclaredConstructor();
+	int constModifier = constructor.getModifiers();
+	assertEquals(constModifier, 2);
 }
 
 
